@@ -1,0 +1,428 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import 'motion-ui';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-accordion;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-close-button;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-flex-video;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-menu;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
+/*----------------------------------------------------------------------------
+[Table of contents]
+Fonts
+Constants
+Mixins
+Globals
+Header
+Article list
+Article
+About
+Footer
+----------------------------------------------------------------------------*/
+
+
+
+/*----------------------------------------------------------------------------
+Fonts
+*/
+
+/*[RobotoSlab]*/
+@font-face {
+    font-family: "RobotoSlab";
+    src: url('../fonts/RobotoSlab/RobotoSlab-Regular.eot');                                         /* IE9 Compat Modes       */
+    src: url('../fonts/RobotoSlab/RobotoSlab-Regular.eot?#iefix')      format('embedded-opentype'), /* IE6-IE8                */
+         url('../fonts/RobotoSlab/RobotoSlab-Regular.svg#svgFontName') format('svg'),               /* Legacy iOS             */
+         url('../fonts/RobotoSlab/RobotoSlab-Regular.ttf')             format('truetype'),          /* Safari, Android, iOS   */
+         url('../fonts/RobotoSlab/RobotoSlab-Regular.woff')            format('woff'),              /* Pretty Modern Browsers */
+         url('../fonts/RobotoSlab/RobotoSlab-Regular.woff2')           format('woff2');             /* Super Modern Browsers  */
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "RobotoSlab";
+    src: url('../fonts/RobotoSlab/RobotoSlab-Bold.eot');                                            /* IE9 Compat Modes       */
+    src: url('../fonts/RobotoSlab/RobotoSlab-Bold.eot?#iefix')         format('embedded-opentype'), /* IE6-IE8                */
+         url('../fonts/RobotoSlab/RobotoSlab-Bold.svg#svgFontName')    format('svg'),               /* Legacy iOS             */
+         url('../fonts/RobotoSlab/RobotoSlab-Bold.ttf')                format('truetype'),          /* Safari, Android, iOS   */
+         url('../fonts/RobotoSlab/RobotoSlab-Bold.woff')               format('woff'),              /* Pretty Modern Browsers */
+         url('../fonts/RobotoSlab/RobotoSlab-Bold.woff2')              format('woff2');             /* Super Modern Browsers  */
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "RobotoSlab";
+    src: url('../fonts/RobotoSlab/RobotoSlab-Light.eot');                                           /* IE9 Compat Modes       */
+    src: url('../fonts/RobotoSlab/RobotoSlab-Light.eot?#iefix')        format('embedded-opentype'), /* IE6-IE8                */
+         url('../fonts/RobotoSlab/RobotoSlab-Light.svg#svgFontName')   format('svg'),               /* Legacy iOS             */
+         url('../fonts/RobotoSlab/RobotoSlab-Light.ttf')               format('truetype'),          /* Safari, Android, iOS   */
+         url('../fonts/RobotoSlab/RobotoSlab-Light.woff')              format('woff'),              /* Pretty Modern Browsers */
+         url('../fonts/RobotoSlab/RobotoSlab-Light.woff2')             format('woff2');             /* Super Modern Browsers  */
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "RobotoSlab";
+    src: url('../fonts/Roboto/roboto-italic.eot');                                           /* IE9 Compat Modes       */
+    src: url('../fonts/Roboto/roboto-italic.eot?#iefix')        format('embedded-opentype'), /* IE6-IE8                */
+         url('../fonts/Roboto/roboto-italic.svg#svgFontName')   format('svg'),               /* Legacy iOS             */
+         url('../fonts/Roboto/roboto-italic.ttf')               format('truetype'),          /* Safari, Android, iOS   */
+         url('../fonts/Roboto/roboto-italic.woff')              format('woff'),              /* Pretty Modern Browsers */
+         url('../fonts/Roboto/roboto-italic.woff2')             format('woff2');             /* Super Modern Browsers  */
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: "RobotoSlab";
+    src: url('../fonts/Roboto/roboto-lightitalic.eot');                                           /* IE9 Compat Modes       */
+    src: url('../fonts/Roboto/roboto-lightitalic.eot?#iefix')        format('embedded-opentype'), /* IE6-IE8                */
+         url('../fonts/Roboto/roboto-lightitalic.svg#svgFontName')   format('svg'),               /* Legacy iOS             */
+         url('../fonts/Roboto/roboto-lightitalic.ttf')               format('truetype'),          /* Safari, Android, iOS   */
+         url('../fonts/Roboto/roboto-lightitalic.woff')              format('woff'),              /* Pretty Modern Browsers */
+         url('../fonts/Roboto/roboto-lightitalic.woff2')             format('woff2');             /* Super Modern Browsers  */
+    font-weight: 300;
+    font-style: italic;
+}
+
+
+/*----------------------------------------------------------------------------
+Constants
+*/
+
+/*Colors*/
+$page-color: #F5F5F5;
+$footer-background: #333;
+$footer-color: #FFF;
+$frame-color: #CACACA;
+$frame-border: 1px solid $frame-color;
+
+
+/*Widths (name?)*/
+$content-width: 40.625rem;
+$min-width: 15em;
+$console-font: "Lucida Console", Monaco, monospace;
+
+
+/*----------------------------------------------------------------------------
+Mixins
+*/
+@mixin transition($transition...) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin frame {
+    border: $frame-border;
+}
+
+@mixin shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin absolutely-centered {
+    position: absolute;
+    top: -9999px;
+    right: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    margin: auto;
+}
+
+/*----------------------------------------------------------------------------
+Globals
+*/
+button, .button {
+    line-height: 1.25rem;
+    padding: 0.25rem 1.5rem;
+    &.float-right {
+        margin-right: 0;
+    }
+}
+
+html {
+    font-size: 125%;
+}
+
+body {
+    padding-top: 6.1875rem;
+    line-height: 1.6;
+    background: $page-color;
+}
+
+html, body, .page-header {
+    min-width: $min-width;
+}
+
+.full-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.no-style {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+pre {
+    padding: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: $console-font;
+    @include frame;
+}
+
+.table-holder {
+    display: table;
+    height: 100%;
+}
+
+.cell-holder {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/*----------------------------------------------------------------------------
+Header
+*/
+
+.menu-columns {
+    padding-right: 0;
+    position: relative;
+}
+
+.main-navigation {
+    overflow: hidden;
+    a {
+        display: block;
+        line-height: 1rem;
+        padding: 0.2rem 0.625rem;
+        float: left;
+        color: $black;
+        font-weight: 700;
+        @include transition(color 200ms, background-color 200ms);
+        &:hover, &:focus {
+            background: $primary-color;
+            color: $page-color;
+
+        }
+    }
+    .icon {
+        text-align: center;
+    }
+    .menu-label {
+        display: block;
+        font-size: 0.75rem;
+    }
+    i {
+        font-size: 1.2rem;
+    }
+}
+
+
+.page-header {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: $page-color;
+    overflow: hidden;
+    @include shadow(0px 10px 8px -4px rgba(0,0,0,0.3));
+}
+
+.main-logo {
+    height: 100%;
+    display: block;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    left: 0.75rem;
+    img {
+        width: 36px;
+        height: auto;
+    }
+}
+
+
+@media screen and (min-width: 32em) {
+    .main-navigation {
+        a {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .menu-label {
+            font-size: 1rem;
+            line-height: 1;
+        }
+        i {
+            display: none;
+        }
+    }
+
+    .main-logo {
+        img {
+            width: auto;
+        }
+    }
+
+}
+/*----------------------------------------------------------------------------
+Article list
+*/
+
+.article-item {
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+/*----------------------------------------------------------------------------
+Article
+*/
+
+@media screen and (min-width: 32em) {
+    article {
+        p {
+            text-align: justify;
+        }
+    }
+}
+
+.article-header {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 0;
+        color: $black;
+    }
+}
+
+
+/*----------------------------------------------------------------------------
+About
+*/
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 1.5rem;
+}
+
+@media screen and (min-width: 32em) {
+    .profile-description {
+        overflow: hidden;
+    }
+}
+
+.profile-description {
+    p {
+        &:last-of-type {
+            margin-bottom: 0.1rem;
+        }
+    }
+}
+
+.picture-frame {
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        @include absolutely-centered();
+    }
+}
+
+.about-list {
+    li {
+        margin-bottom: 2rem;
+    }
+}
+
+.social-icons {
+    font-size: 1.5rem;
+    a {
+        margin-right: 0.5rem;
+        display: inline-block;
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+    i {
+        position: relative;
+    }
+    span {
+        display: inline-block;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+    }
+}
+
+
+/*----------------------------------------------------------------------------
+Contact form
+*/
+.accesibility-label {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+
+/*----------------------------------------------------------------------------
+Footer
+*/
+.page-footer {
+    background: $footer-background;
+    color: $footer-color;
+    padding: 0.5rem;
+}
+
+.copyright {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 0.8rem;
+}
